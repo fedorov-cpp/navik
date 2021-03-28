@@ -1,0 +1,11 @@
+.dm-indicator {
+    font-family: serif;
+    font-size: 50px;
+    font-weight: bold;
+    text-anchor: middle;
+}
+.dm-indicatorComment {
+    font-family: serif;
+    font-size: 15px;
+    text-anchor: middle;
+}

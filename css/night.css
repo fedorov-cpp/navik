@@ -1,0 +1,122 @@
+* {
+    background-color: #101010;
+}
+
+/*subPane*/
+#spLeft {
+}
+#spRightTop {
+}
+#spRightBottom {
+}
+
+/*basePane*/
+#bpLeftTop {
+}
+#bpLeftBottom {
+}
+#bpRightTop {
+}
+#bpRightBottom {
+}
+
+/*windmeter*/
+.wm-back {
+    fill: transparent;
+}
+.wm-deadband {
+    fill: none;
+    stroke: #090909;
+    stroke-opacity: 0.12;
+}
+.wm-scale-left {
+    fill: none;
+    stroke-opacity: 0.12;
+    stroke: red;
+}
+.wm-scale-right {
+    fill: none;
+    stroke-opacity: 0.12;
+    stroke: green;
+}
+.wm-ticks {
+    fill: none;
+    stroke: #151515;
+}
+.wm-grid {
+    stroke: #404040;
+}
+.wm-ship {
+    fill: #131313;
+}
+.wm-scaleText {
+    fill: #252525;
+}
+.wm-indicators {
+    fill: #252525;
+}
+.wm-pointer {
+    fill: #452600;
+}
+
+/*choice pane*/
+#choicePane::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+#choicePane::-webkit-scrollbar-thumb {
+    background-color: #252525;
+}
+.choiceOption {
+    border-color: #101010;
+    background-color: #131313;
+    color: #252525;
+}
+
+/*depth meter*/
+.dm-sea {
+    fill: #061014;
+    fill-opacity: 0.12;
+}
+
+.dm-seabed {
+    fill: #1a0e00;
+    fill-opacity: 0.21;
+    stroke: #331c00;
+    stroke-opacity: 0.3;
+}
+
+.dm-indicator, .dm-indicatorComment {
+    fill: #252525;
+}
+
+/*wind indicator*/
+.wi-indicators {
+    fill: #252525;
+}
+.wi-back {
+    fill-opacity: 0.1;
+}
+
+/*depth indicator*/
+.di-depth, .di-depthComment {
+    fill: #252525;
+}
+.di-back {
+    fill-opacity: 0.1;
+}
+
+/*sog cog indicator*/
+.sci-indicators {
+    fill: #252525;
+}
+.sci-back {
+    fill-opacity: 0.1;
+}
+
+/*coord indicator*/
+.ci-indicators {
+    fill: #252525;
+}
+.ci-back {
+    fill-opacity: 0.1;
+}

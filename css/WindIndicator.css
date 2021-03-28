@@ -1,0 +1,11 @@
+.wi-windAngle, .wi-windSpeed {
+    font-family: serif;
+    font-size: 27px;
+    font-weight: bold;
+    text-anchor: middle;
+}
+.wi-windAngleComment, .wi-windSpeedComment {
+    font-family: serif;
+    font-size: 5px;
+    text-anchor: middle;
+}

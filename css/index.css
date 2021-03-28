@@ -1,0 +1,49 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin:  0;
+    overflow: hidden;
+    /*forbid user selection*/
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -o-user-select: none;
+}
+
+#basePane, #subPane {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    transition: left 0.3s linear;
+}
+
+#basePane {
+    left: 0;
+}
+
+#subPane {
+    left: 100%;
+}
+
+#choicePane {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+#choicePane::-webkit-scrollbar {
+    width: 25px;
+}
+#choicePane::-webkit-scrollbar-thumb {
+    border-radius: 25px;
+}
+.choiceOption {
+    text-align: center;
+    font-size: xx-large;
+    padding: 7px;
+    border: outset thin;
+    width: 95%;
+    margin: 0 auto;
+}
+

@@ -1,0 +1,11 @@
+#bpLeftTop, #bpLeftBottom {
+    width: 50%;
+    height: 50%;
+    float: left;
+}
+
+#bpRightTop, #bpRightBottom {
+    width: 50%;
+    height: 50%;
+    float: left;
+}

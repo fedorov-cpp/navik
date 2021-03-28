@@ -1,0 +1,42 @@
+.wm-back {
+}
+.wm-deadband {
+    stroke-width: 25;
+    stroke-dasharray: 9.4248 103.6725;
+    stroke-dashoffset: 32.9867;
+}
+.wm-scale-left {
+    stroke-width: 3;
+    stroke-dasharray: 22.7765 159.4358;
+    stroke-dashoffset: 75.9218;
+}
+.wm-scale-right {
+    stroke-width: 3;
+    stroke-dasharray: 22.7765 159.4358;
+    stroke-dashoffset: 37.9609;
+}
+.wm-ticks {
+    stroke-width: 4.5;
+    stroke-dasharray: 5.085 0.5;
+}
+.wm-grid {
+    stroke-width: 0.02;
+}
+.wm-ship {
+}
+.wm-scaleText {
+    font-family: serif;
+    font-size: 5px;
+}
+.wm-windAngle, .wm-windSpeed {
+    font-family: serif;
+    font-size: 16px;
+    font-weight: bold;
+    text-anchor: middle;
+}
+.wm-windAngleComment, .wm-windSpeedComment {
+    font-family: serif;
+    font-size: 5px;
+    text-anchor: middle;
+}
+

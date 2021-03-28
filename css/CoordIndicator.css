@@ -1,0 +1,11 @@
+.ci-e, .ci-n {
+    font-family: serif;
+    font-size: 16px;
+    font-weight: bold;
+    text-anchor: middle;
+}
+.ci-eComment, .ci-nComment {
+    font-family: serif;
+    font-size: 5px;
+    text-anchor: middle;
+}

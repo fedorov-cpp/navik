@@ -1,0 +1,16 @@
+#spLeft {
+    width: 60%;
+    height: 100%;
+    float: left;
+}
+
+#wmHolder {
+    width: 100%;
+    height: 100%;
+}
+
+#spRightTop, #spRightBottom {
+    width: 40%;
+    height: 50%;
+    float: left;
+}

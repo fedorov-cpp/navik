@@ -1,0 +1,11 @@
+.di-depth {
+    font-family: serif;
+    font-size: 27px;
+    font-weight: bold;
+    text-anchor: middle;
+}
+.di-depthComment {
+    font-family: serif;
+    font-size: 5px;
+    text-anchor: middle;
+}
