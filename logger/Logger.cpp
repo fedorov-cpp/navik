@@ -1,63 +1,73 @@
+#include <unordered_map>
+
 #include "Logger.h"
 
-using namespace LoggerNames;
-using namespace std;
-
-Logger::Logger(LoggerType type, string name, LoggerLevel level):
-        m_type(type),
-        m_name(name),
-        m_level(level)
-{
-    if(type == LoggerType::file)
-    {
-        m_filebuf.open(name+".LOG", ios_base::app);
-        m_stream = new ostream(&m_filebuf);
+namespace {
+  struct FS_EnumClassHash {
+    template<typename T>
+    std::size_t operator()(T t) const {
+      return static_cast<std::size_t>(t);
     }
-    else if(type == LoggerType::console)
-        m_stream = new ostream(cout.rdbuf());
-    m_null = new ostream(nullptr);
+  };
 }
 
-Logger::~Logger()
-{
-    if(m_filebuf.is_open())
-        m_filebuf.close();
-    if(m_stream) delete m_stream;
-    if(m_null) delete m_null;
+Logger::Logger(Type type, std::string name, Level level)
+    : name_(std::move(name)), level_(level) {
+  if (type == Type::file) {
+    filebuf_.open(name_ + ".log", std::ios_base::app);
+    stream_ = new std::ostream(&filebuf_);
+  } else if (type == Type::console) {
+    stream_ = new std::ostream(std::cout.rdbuf());
+  }
+  null_ = new std::ostream(nullptr);
 }
 
-std::ostream& Logger::getStream(LoggerLevel level)
-{
-    if(isValidLevel(level))
-    {
-        insertLineHeader(level);
-        return *m_stream;
-    }
-    else
-        return *m_null;
+Logger::~Logger() {
+  if (filebuf_.is_open()) {
+    filebuf_.close();
+  }
+  delete stream_;
+  delete null_;
 }
 
-bool Logger::isValidLevel(LoggerLevel level)
-{
-    return m_level >= level;
+std::ostream &Logger::getStream(Level level) {
+  if (isValidLevel(level)) {
+    insertLineHeader(level);
+    return *stream_;
+  } else {
+    return *null_;
+  }
 }
 
-void Logger::insertLineHeader(LoggerLevel level)
-{
-    // get level string
-    string sLevel;
-    switch(level)
-    {
-        case LoggerLevel::TRACE: sLevel="      TRC"; break;
-        case LoggerLevel::DEBUG: sLevel="      DBG"; break;
-        case LoggerLevel::INFO: sLevel="   INF   "; break;
-        case LoggerLevel::WARN: sLevel="   WRN   "; break;
-        case LoggerLevel::ERR: sLevel="ERR      "; break;
-        case LoggerLevel::CRIT: sLevel="CRT      "; break;
-    }
-    // get current time
-    auto t = time(nullptr);
-    auto tm = *localtime(&t);
-    // insert line header
-    *m_stream << sLevel << " | " << put_time(&tm, "%d.%m.%Y %H:%M:%S") << " | ";
+bool Logger::isValidLevel(Level level) {
+  return level_ >= level;
+}
+
+std::string Logger::levelToStr(Level level) {
+  static const std::unordered_map<Level, std::string, FS_EnumClassHash> MAP = {
+      {Level::TRACE, "      TRC"},
+      {Level::DEBUG, "      DBG"},
+      {Level::INFO,  "   INF   "},
+      {Level::WARN,  "   WRN   "},
+      {Level::ERR,   "ERR      "},
+      {Level::CRIT,  "CRT      "},
+  };
+
+  const auto it = MAP.find(level);
+  if (it != MAP.end()) {
+    return it->second;
+  }
+
+  throw std::runtime_error{"Got unknown level."};
+}
+
+void Logger::insertLineHeader(Level level) {
+  const std::string sLevel = levelToStr(level);
+
+  // get current time
+  const auto t = time(nullptr);
+  const auto tm = *localtime(&t);
+
+  *stream_ << sLevel << " | "
+           << std::put_time(&tm, "%d.%m.%Y %H:%M:%S") << " | ";
 }
