@@ -24,7 +24,7 @@ function DepthIndicator() {
     self.depthIndicatorComment.setAttribute("class", "di-depthComment");
     self.depthIndicatorComment.setAttribute("x", "50");
     self.depthIndicatorComment.setAttribute("y", "60");
-    self.depthIndicatorComment.innerHTML = "м";
+    self.depthIndicatorComment.innerHTML = "m";
     self.element.appendChild(self.depthIndicator);
     self.element.appendChild(self.depthIndicatorComment);
 

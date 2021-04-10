@@ -31,7 +31,7 @@ function SogCogIndicator() {
     self.sogIndicatorComment.setAttribute("class", "sci-sogComment");
     self.sogIndicatorComment.setAttribute("x", "50");
     self.sogIndicatorComment.setAttribute("y", "44");
-    self.sogIndicatorComment.innerHTML = "узлов";
+    self.sogIndicatorComment.innerHTML = "knots";
     self.cogComment = document.createElementNS("http://www.w3.org/2000/svg", "text");
     self.cogComment.setAttribute("class", "sci-cogComment");
     self.cogComment.setAttribute("x", "25");
@@ -46,7 +46,7 @@ function SogCogIndicator() {
     self.cogIndicatorComment.setAttribute("class", "sci-cogComment");
     self.cogIndicatorComment.setAttribute("x", "50");
     self.cogIndicatorComment.setAttribute("y", "80");
-    self.cogIndicatorComment.innerHTML = "градусов";
+    self.cogIndicatorComment.innerHTML = "degrees";
     self.indicators.appendChild(self.sogComment);
     self.indicators.appendChild(self.sogIndicator);
     self.indicators.appendChild(self.sogIndicatorComment);

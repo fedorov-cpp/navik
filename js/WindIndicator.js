@@ -26,7 +26,7 @@ function WindIndicator() {
     self.windSpeedIndicatorComment.setAttribute("class", "wi-windSpeedComment");
     self.windSpeedIndicatorComment.setAttribute("x", "50");
     self.windSpeedIndicatorComment.setAttribute("y", "44");
-    self.windSpeedIndicatorComment.innerHTML = "м/с";
+    self.windSpeedIndicatorComment.innerHTML = "m/s";
     self.windAngleIndicator = document.createElementNS("http://www.w3.org/2000/svg", "text");
     self.windAngleIndicator.setAttribute("class", "wi-windAngle");
     self.windAngleIndicator.setAttribute("x", "50");
@@ -36,7 +36,7 @@ function WindIndicator() {
     self.windAngleIndicatorComment.setAttribute("class", "wi-windAngleComment");
     self.windAngleIndicatorComment.setAttribute("x", "50");
     self.windAngleIndicatorComment.setAttribute("y", "80");
-    self.windAngleIndicatorComment.innerHTML = "градусов";
+    self.windAngleIndicatorComment.innerHTML = "degrees";
     self.indicators.appendChild(self.windSpeedIndicator);
     self.indicators.appendChild(self.windSpeedIndicatorComment);
     self.indicators.appendChild(self.windAngleIndicator);

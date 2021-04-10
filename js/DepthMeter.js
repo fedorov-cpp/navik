@@ -36,7 +36,7 @@ function DepthMeter(maxDepth, totalPoints) {
     self.indicatorComment.setAttribute("class", "dm-indicatorComment");
     self.indicatorComment.setAttribute("x", (self.totalPoints / 2).toString());
     self.indicatorComment.setAttribute("y", (self.totalPoints / 2).toString());
-    self.indicatorComment.innerHTML = "м";
+    self.indicatorComment.innerHTML = "m";
     self.element.appendChild(self.indicatorComment);
 
 
