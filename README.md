@@ -10,6 +10,8 @@ Includes:
 - SOG COG indicator
 - Coordinates
 
+![demo GIF should be here](https://github.com/fedorov-cpp/navik/blob/main/demo.gif)
+
 ## Quick start
 
 1. Download websocketd executable: http://websocketd.com
