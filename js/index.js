@@ -105,7 +105,7 @@ function changePane() {
 
 function changeColorMode() {
     var mode = document.getElementById("colorMode");
-    if (mode.href.indexOf("css/night.css") != -1) {
+    if (mode.href.indexOf("css/night.css") !== -1) {
         mode.href = "css/day.css";
     } else {
         mode.href = "css/night.css";

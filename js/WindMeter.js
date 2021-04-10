@@ -107,6 +107,7 @@ function WindMeter() {
     self.windAngle = 0;
     self.windSpeed = 0;
     self.element.setWindAngle = function(value) {
+        console.log("setting wind angle: ", value);
         if ((value > -1) && (value < 360)) {
             if (Math.abs(value - self.windAngle) > 180)
                 self.windAngle -= 360;
