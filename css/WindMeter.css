@@ -3,17 +3,17 @@
 .wm-deadband {
     stroke-width: 25;
     stroke-dasharray: 9.4248 103.6725;
-    stroke-dashoffset: 32.9867;
+    stroke-dashoffset: 33.5;
 }
 .wm-scale-left {
     stroke-width: 3;
     stroke-dasharray: 22.7765 159.4358;
-    stroke-dashoffset: 75.9218;
+    stroke-dashoffset: 76.2;
 }
 .wm-scale-right {
     stroke-width: 3;
     stroke-dasharray: 22.7765 159.4358;
-    stroke-dashoffset: 37.9609;
+    stroke-dashoffset: 38.2;
 }
 .wm-ticks {
     stroke-width: 4.5;
@@ -21,8 +21,6 @@
 }
 .wm-grid {
     stroke-width: 0.02;
-}
-.wm-ship {
 }
 .wm-scaleText {
     font-family: serif;

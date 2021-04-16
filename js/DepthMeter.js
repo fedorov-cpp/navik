@@ -1,59 +1,44 @@
 function DepthMeter(maxDepth, totalPoints) {
-    var self = this;
-    self.maxDepth = maxDepth;
-    self.k = totalPoints / self.maxDepth;
-    self.depth = maxDepth;
-    self.data = [];
-    self.totalPoints = totalPoints;
-    for (var i=0; i < totalPoints; ++i)
-        self.data.push(self.depth);
+    this.maxDepth = maxDepth;
+    this.k = totalPoints / this.maxDepth;
+    this.depth = maxDepth;
+    this.data = [];
+    this.totalPoints = totalPoints;
+    for (let i=0; i < totalPoints; ++i) {
+        this.data.push(this.depth);
+    }
 
-    self.element = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    self.element.setAttribute("class", "DepthMeter");
-    self.element.setAttribute("width", "100%");
-    self.element.setAttribute("height", "100%");
-    self.element.setAttribute("viewBox", "0 0 " + self.totalPoints.toString() +
-        " " + self.totalPoints.toString());
+    this.element = SvgElement("DepthMeter", "100%", "100%", "0 0 " + this.totalPoints.toString() + " " + this.totalPoints.toString());
+    this.element.appendChild(/*background*/SvgCircle("dm-sea", (this.totalPoints / 2).toString(), (this.totalPoints / 2).toString(), (this.totalPoints / 2).toString()));
 
-    self.sea = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    self.sea.setAttribute("class", "dm-sea");
-    self.sea.setAttribute("cx", (self.totalPoints / 2).toString());
-    self.sea.setAttribute("cy", (self.totalPoints / 2).toString());
-    self.sea.setAttribute("r", (self.totalPoints / 2).toString());
-    self.element.appendChild(self.sea);
+    this.seabed = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    this.seabed.setAttribute("class", "dm-seabed");
+    this.element.appendChild(this.seabed);
 
-    self.seabed = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    self.seabed.setAttribute("class", "dm-seabed");
-    self.element.appendChild(self.seabed);
-
-    self.indicator = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    self.indicator.setAttribute("class", "dm-indicator");
-    self.indicator.setAttribute("x", (self.totalPoints / 2).toString());
-    self.indicator.setAttribute("y", (self.totalPoints / 3).toString());
-    self.indicator.innerHTML = "0";
-    self.element.appendChild(self.indicator);
-    self.indicatorComment = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    self.indicatorComment.setAttribute("class", "dm-indicatorComment");
-    self.indicatorComment.setAttribute("x", (self.totalPoints / 2).toString());
-    self.indicatorComment.setAttribute("y", (self.totalPoints / 2).toString());
-    self.indicatorComment.innerHTML = "m";
-    self.element.appendChild(self.indicatorComment);
-
-
-    self.element.setDepth = function(depth) {
-        self.depth = depth;
-        self.indicator.innerHTML = self.depth.toString();
+    const INDICATORS = {
+        indicator: SvgText("dm-indicator", (this.totalPoints / 2).toString(), (this.totalPoints / 3).toString(), "0"),
+        indicatorComment: SvgText("dm-indicatorComment", (this.totalPoints / 2).toString(), (this.totalPoints / 2).toString(), "m"),
     };
-    self.drawSeabed = function() {
-        self.data.shift();
-        self.data.push(self.depth);
+    for (let widgetName in INDICATORS) {
+        this.element.appendChild(INDICATORS[widgetName]);
+    }
+
+    this.element.setDepth = (depth) => {
+        this.depth = depth;
+        INDICATORS['indicator'].innerHTML = this.depth.toString();
+    };
+
+    this.drawSeabed = () => {
+        this.data.shift();
+        this.data.push(this.depth);
         // draw
-        var curve = "M 0 " + self.totalPoints + " ";
-        for (var i=0; i < self.data.length; ++i) {
-            curve += "L " + i + " " + self.data[i] * self.k + " ";
+        let curve = "M 0 " + this.totalPoints + " ";
+        for (let i=0; i < this.data.length; ++i) {
+            curve += "L " + i + " " + this.data[i] * this.k + " ";
         }
-        curve += "L " + totalPoints + " " + self.totalPoints + " Z";
-        self.seabed.setAttribute("d", curve);
+        curve += "L " + totalPoints + " " + this.totalPoints + " Z";
+        this.seabed.setAttribute("d", curve);
     };
-    self.interval = setInterval(self.drawSeabed, 1000);
+
+    this.interval = setInterval(this.drawSeabed, 1000);
 }

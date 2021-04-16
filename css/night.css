@@ -48,6 +48,7 @@
 }
 .wm-ship {
     fill: #131313;
+    stroke: #131313;
 }
 .wm-scaleText {
     fill: #252525;

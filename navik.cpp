@@ -68,7 +68,7 @@ class SogCog : public IProperty {
     [[nodiscard]] std::string json_str() const override {
       const double sog = getSog();
       const double cog = getCog();
-      return R"({"prop":"sogcog", "data": {"sog":)" + std::to_string(sog) +
+      return R"({"prop":"sogCog", "data": {"sog":)" + std::to_string(sog) +
              R"(, "cog":)" + std::to_string(cog) + "}}";
     }
 

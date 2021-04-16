@@ -1,65 +1,72 @@
-function ChoiceOption(name, widget, parent) {
-    var self = this;
-    self.parent = parent;
-    self.name = name;
-    self.widget = widget;
-    self.element = document.createElement("div");
-    self.element.setAttribute("class", "choiceOption");
-    self.element.innerHTML = self.name;
-    self.element.onmousedown = function() { self.parent.selected(self.widget); };
+let ChoiceOption = (name, widget, func) => {
+    let element = document.createElement("div");
+    element.setAttribute("class", "choiceOption");
+    element.innerHTML = name;
+    element.onmousedown = () => {
+        func(widget);
+    };
+    return element;
 }
 
-function Choice(names, widgets) {
-    var self = this;
-    self.names = names;
-    self.widgets = widgets;
-    self.shown = false;
-    self.div = null;
+function Choice(widgets) {
+    this.widgets = widgets;
+    this.shown = false;
+    this.div = null;
 
-    self.close = function() {
-        if (self.shown == true) {
-            self.element.parentNode.removeChild(self.element);
-            self.shown = false;
+    this.close = () => {
+        if (this.shown === true) {
+            this.element.parentNode.removeChild(this.element);
+            this.shown = false;
         }
     };
-    self.show = function(e) {
-        self.close();
-        if (e.target != self.element) {
-            if (!e.target.classList.contains("changeable")) {
+
+    this.show = (event) => {
+        this.close();
+        if (event.target !== this.element) {
+            if (!event.target.classList.contains("changeable")) {
                 // search changeable among parents recursively
-                var target = e.target;
+                let target = event.target;
+
                 while (target.parentNode) {
                     target = target.parentNode;
                     if (target.classList.contains("changeable")) {
-                        self.div = target;
+                        this.div = target;
                         break;
                     }
                 }
-                if (self.div)
-                    while (self.div.firstChild) {
-                        self.div.removeChild(self.div.firstChild);
+
+                if (this.div) {
+                    while (this.div.firstChild) {
+                        this.div.removeChild(this.div.firstChild);
                     }
-                else
+                } else {
                     return;
-            } else self.div = e.target;
-            self.div.appendChild(self.element);
-            self.shown = true;
-        }
-    };
-    self.selected = function(widget) {
-        if (self.div) {
-            self.close();
-            if (widget == DepthMeter)
-                self.div.appendChild(new widget(5, 180).element);
-            else
-                self.div.appendChild(new widget().element);
+                }
+            } else {
+                this.div = event.target;
+            }
+
+            this.div.appendChild(this.element);
+            this.shown = true;
         }
     };
 
-    self.element = document.createElement("div");
-    self.element.setAttribute("id", "choicePane");
-    for (var i=0; i < names.length; ++i) {
-        var option = new ChoiceOption(self.names[i], self.widgets[i], self);
-        self.element.appendChild(option.element);
+    this.selected = (widget) => {
+        if (this.div) {
+            this.close();
+
+            if (widget === DepthMeter) {
+                this.div.appendChild(new widget(5, 180).element);
+            } else {
+                this.div.appendChild(new widget().element);
+            }
+        }
+    };
+
+    this.element = document.createElement("div");
+    this.element.setAttribute("id", "choicePane");
+    for (let name in this.widgets) {
+        let option = ChoiceOption(name, this.widgets[name], this.selected);
+        this.element.appendChild(option);
     }
 }
