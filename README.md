@@ -19,3 +19,5 @@ Includes:
 3. Change `run.sh` for your needs
 4. Open localhost:8080 page in your browser.
 5. The page is divided into 4 panes. Press the mouse in one of four panes of the page to pick up the widget.
+6. Swipe from right to left to switch page.
+7. Swipe from bottom to top to switch color mode.
